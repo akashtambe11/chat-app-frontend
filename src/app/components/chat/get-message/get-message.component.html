@@ -1,0 +1,22 @@
+
+
+<div fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="start stretch" fxFlexFill>
+
+    <div class="recipientName" fxFlex="40px">{{displayRecipientName}}</div>
+
+    <div class="chatDisplayBox" fxFlex="91">
+        <div *ngFor="let chat of msgArray; let i = index">
+    
+            <div *ngIf="chat.senderId == senderIdStored">
+               <div class="sentMsg">{{chat.message}}</div> 
+            </div>
+          
+            <div *ngIf="chat.senderId != senderIdStored">
+                <div class="receivedMsg">{{chat.message}}</div> 
+            </div>
+         
+        </div>
+    </div>
+  
+
+</div>

@@ -1,0 +1,52 @@
+<div class="wrapper fadeInDown">
+
+    <div id="formContent">
+
+        <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" novalidate>
+
+            <div id="loginFormTitle">
+                <h2 id="logSignTitle">LOG IN</h2>
+            </div>
+
+            <div class="example-container">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput formControlName="email" [(ngModel)]="userService.userModel.email"
+                        placeholder="pat@example.com">
+                    <!-- Error Warning -->
+                    <mat-error *ngIf="loginForm.get('email').invalid"><i>{{getEmailWarning()}}</i></mat-error>
+
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput formControlName="password" [(ngModel)]="userService.userModel.password"
+                        [type]="hide ? 'password' : 'text'">
+                    <!-- Error Warning -->
+                    <mat-error *ngIf="loginForm.get('password').invalid"><i>{{getPasswordWarning()}}</i></mat-error>
+
+                    <mat-icon matSuffix (click)="hide = !hide" class="handCursor">
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+
+            <a routerLink="/forgot">Forgot Password</a>
+            <br><br>
+
+            <button mat-raised-button color="primary" id="loginSignBtn" type="submit" [disabled]="!loginForm.valid"
+                value="Log-in">Log In</button>
+        </form>
+
+        <div *ngIf="showSuccessMessage">
+            Login successful
+        </div>
+
+        <div class="alert" *ngIf="serverErrorMessage">
+            {{serverErrorMessage}}
+        </div>
+    </div>
+</div>

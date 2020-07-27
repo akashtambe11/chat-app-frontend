@@ -1,0 +1,19 @@
+<div class="wrapper fadeInDown">
+    <br> <br> <br> <br> <br> <br>
+    <div id="formContent">
+
+        <div>
+            <p id="loginFormTitle">Click here to verify your ChatApp account</p>
+        
+            <button mat-raised-button color="primary" id="loginSignBtn" (click)="verifyAccount()">Verify Account</button>
+        </div>
+        
+        <div class="success" *ngIf="showSuccessMessage">
+            User verified
+        </div>
+
+        <div class="alert" *ngIf="serverErrorMessage">
+            {{serverErrorMessage}}
+        </div>
+    </div>
+</div>

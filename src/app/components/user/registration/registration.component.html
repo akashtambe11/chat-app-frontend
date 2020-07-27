@@ -1,0 +1,73 @@
+<div class="wrapper fadeInDown">
+    
+    <div id="formContent">
+
+        <form [formGroup]="registrationForm" (ngSubmit)="registrationForm.valid && onRegisterSubmit()" novalidate>
+
+            <div id="loginFormTitle">
+                <h2 id="logSignTitle">SIGN UP</h2>
+            </div>
+
+            <div class="example-container">
+                
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName" [(ngModel)]="userService.userModel.firstName">
+                    <!-- Error Warning -->
+                    <mat-error *ngIf="registrationForm.get('firstName').invalid"><i>{{getNameWarning('firstName')}}</i>
+                    </mat-error>
+                    <mat-icon matSuffix>create</mat-icon>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" [(ngModel)]="userService.userModel.lastName">
+                    <!-- Error Warning -->
+                    <mat-error *ngIf="registrationForm.get('lastName').invalid"><i>{{getNameWarning('lastName')}}</i>
+                    </mat-error>
+                    <mat-icon matSuffix>create</mat-icon>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput formControlName="email" [(ngModel)]="userService.userModel.email"
+                        placeholder="pat@example.com">
+                    <!-- Error Warning -->
+                    <mat-error *ngIf="registrationForm.get('email').invalid"><i>{{getEmailWarning()}}</i></mat-error>
+
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput formControlName="password" [(ngModel)]="userService.userModel.password"
+                        [type]="hide ? 'password' : 'text'">
+                    <!-- Error Warning -->
+                    <mat-error *ngIf="registrationForm.get('password').invalid"><i>{{getPasswordWarning()}}</i>
+                    </mat-error>
+
+                    <mat-icon matSuffix (click)="hide = !hide" class="handCursor">
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+
+                </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="primary" type="submit" id="loginSignBtn" [disabled]="!registrationForm.valid"
+                value="Sign-up">Sign
+                Up</button>
+        </form>
+
+        <div *ngIf="showSuccessMessage">
+            Saved successfully
+        </div>
+
+        <div class="alert" *ngIf="serverErrorMessage">
+            {{serverErrorMessage}}
+        </div>
+    </div>
+
+</div>

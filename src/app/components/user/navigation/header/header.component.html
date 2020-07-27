@@ -1,0 +1,17 @@
+<mat-toolbar color='primary' class="redBg">
+   <img class="chatAppLogo" src="../../../../../assets/logo2-192x192.png">
+   <span> hatApp </span>
+
+   <div class="navbarSpacer"></div>
+
+   <span *ngIf="beforeLoginBtn">
+      <button mat-button id="navbarBtn" (click)="navToLogin()">Log In</button>
+      <button mat-button id="navbarBtn" (click)="navToSignUp()">Sign Up</button>
+   </span>
+
+   <span *ngIf="afterLoginBtn">
+      <button mat-raised-button id="navbarBtn" (click)="navToLogin()" color="primary">Log Out <mat-icon>account_circle
+         </mat-icon></button>
+   </span>
+
+</mat-toolbar>

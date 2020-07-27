@@ -1,0 +1,41 @@
+<div fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="start stretch" fxFlexFill>
+
+  <div class="listTitle" fxFlex="40px">
+    <p class="userListTitle">Registered Users</p>
+  </div>
+
+  <div class="listNames" fxFlex="91">
+
+    <ul>
+      <li class="userListName" *ngFor="let user of userListArr; let i = index">
+        <span class=" handCursor" *ngIf="senderName != user[0]" (click)="chatWithUser(i)">{{ user[0] }}</span>
+
+      </li>
+
+      <!-- <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li>
+      <li class="userListName"><span class=" handCursor">zdfdfzb</span></li> -->
+    
+
+    </ul>
+  </div>
+
+</div>

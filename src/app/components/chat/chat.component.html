@@ -1,0 +1,49 @@
+<div>
+    <div>
+        <!-- Header -->
+        <app-header></app-header>
+    </div>
+
+    <div class="container">
+        <router-outlet>
+
+            <div class="dashboardContainer" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center"
+                fxLayoutGap="10px" fxLayoutGap.xs="2px">
+
+                <!-- left -->
+                <div class="leftBox" fxFlex="20">
+                    
+                    <div class="userListBox"> 
+                        
+                            <app-user-list></app-user-list>
+                     
+                        
+                    </div>
+                </div>
+
+                <!-- right -->
+                <div class=" rightBox" fxFlex="70">
+
+                    <div fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="space-between stretch" fxFlexFill>
+                        <div class="MessageDisplayBox" fxFlex="91">
+                            <app-get-message></app-get-message>
+                            
+                        </div>
+                        <div class="sendMessageBox" fxFlex="40px">
+                            <app-send-message></app-send-message>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        </router-outlet>
+    </div>
+
+    <div>
+        <!-- Footer -->
+        <app-footer></app-footer>
+    </div>
+
+</div>
