@@ -1,34 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 
+// Service imports
 import { ChatService } from '../../../services/chat.service'
 import { DataService } from 'src/app/services/data.service';
+import { SocketIoService } from 'src/app/services/socket-io.service';
 
 @Component({
   selector: 'app-get-message',
   templateUrl: './get-message.component.html',
   styleUrls: ['./get-message.component.css'],
-  providers: [ChatService]
+  providers: [
+    ChatService,
+    SocketIoService
+  ]
 })
 export class GetMessageComponent implements OnInit {
-  userMsgList;
-  msgArray = [];
+
   senderIdStored = sessionStorage.getItem('senderId');
   receiverIdStored = sessionStorage.getItem('receiverId');
   receiverIdName = sessionStorage.getItem('receiverName')
   displayRecipientName;
   response;
-
+  userMsgList;
   displayDashboardImg = false;
   showSuccessMessage: boolean;
   serverErrorMessage;
+  msgArray = [];
 
-
-  constructor(public chatService: ChatService,
-    private dataService: DataService) { }
+  constructor(
+    public chatService: ChatService,
+    private dataService: DataService,
+    private socketService: SocketIoService
+  ) { }
 
   ngOnInit(): void {
     this.dataService.currentData.subscribe(data => {
-    
+
       this.response = data;
 
       if (this.response.receiverId == sessionStorage.getItem('receiverId')) {
@@ -39,9 +46,12 @@ export class GetMessageComponent implements OnInit {
       } else {
         console.log('no');
         this.displayDashboardImg = true;
-
       }
-    })
+    });
+
+    // Socket service: Real Time chatting
+    this.socketService.displayNewMessage()
+      .subscribe(data => this.msgArray.push(data));
   }
 
   displayPersonalMsg() {
@@ -54,8 +64,6 @@ export class GetMessageComponent implements OnInit {
             this.msgArray.push(this.userMsgList.result[i])
           }
         }
-        // console.log(this.userMsgList);
-        // console.log(this.msgArray);
       },
 
       err => {

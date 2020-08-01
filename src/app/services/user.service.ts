@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { environment } from '../../environments/environment'
-import { User } from '../model/user.model'
+// Environment imports
+import { environment } from '../../environments/environment';
+
+// Model imports
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  splitUrl;
+  urlToken;
+  token;
 
   userModel: User = {
     firstName: '',
@@ -16,10 +23,6 @@ export class UserService {
     password: '',
     new_password: ''
   }
-
-  splitUrl;
-  urlToken;
-  token;
 
   constructor(private http: HttpClient) { }
 
@@ -42,14 +45,12 @@ export class UserService {
   //Forot Password
   forgotPasword(forgotMail: User) {
     return this.http.post(environment.apiBaseUrl + '/forgot', forgotMail)
-
   }
 
   //Reset Password
   resetPassword(newPassword: User) {
     this.token = this.getUrlToken()
     return this.http.post(environment.apiBaseUrl + '/reset/' + this.token, newPassword)
-
   }
 
   //To get token from Url

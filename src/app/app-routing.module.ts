@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//Component
+//Component imports
 import { UserComponent } from './components/user/user.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { LoginComponent } from './components/user/login/login.component';
@@ -23,15 +23,16 @@ export const routes: Routes = [
       { path: 'forgot', component: ForgotPasswordComponent },
       { path: 'verify/:token', component: VerifyAccountComponent },
       { path: 'reset/:token', component: ResetPasswordComponent },
-      
+
     ]
   },
 
-  {path: 'dashboard', component: ChatComponent, canActivate: [AuthGuard]}
+  { path: 'dashboard', component: ChatComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

@@ -2,16 +2,16 @@
     <div fxLayout="row" fxLayoutGap="0px" fxLayoutAlign="center center" fxFlexFill>
         <div fxLayout="row" fxLayoutGap="0px" fxLayoutAlign="end center" fxFlexFill>
             <div class="messageInputContainer" fxFlex="75">
-     
-                  <textarea [formControl]="message" [(ngModel)]="chatService.chatModel.message" class="msgTextArea" rows="1" max-rows="2" placeholder="Enter message. . ." value="clearText"></textarea>
+
+                <textarea [formControl]="message" [(ngModel)]="chatService.chatModel.message" class="msgTextArea"
+                    rows="1" max-rows="2" placeholder="Enter message. . ." value="clearText"></textarea>
             </div>
-    
+
             <div class="messsageSendContainer" fxFlex="25">
                 <button mat-button color="primary" id="sendMsgButton" type="submit" [disabled]="!message.valid"
-                value="send">Send</button>
+                    value="send">Send</button>
             </div>
         </div>
     </div>
-    
 
 </form>

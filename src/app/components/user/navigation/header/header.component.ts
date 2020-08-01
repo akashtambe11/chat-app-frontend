@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+// Service imports
 import { UserService } from '../../../../services/user.service'
 
 @Component({
@@ -10,19 +11,26 @@ import { UserService } from '../../../../services/user.service'
   providers: [UserService]
 })
 export class HeaderComponent implements OnInit {
+
   beforeLoginBtn;
   afterLoginBtn;
 
-  constructor(public userService: UserService, private router: Router) { }
+  constructor(
+    public userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.renderBtn();
   }
 
+  // Before sign in and sign out buttons display
   renderBtn() {
+
     if (!!sessionStorage.getItem('token')) { //returns true or false
       this.beforeLoginBtn = false;
       this.afterLoginBtn = true;
+
     } else {
       this.beforeLoginBtn = true;
       this.afterLoginBtn = false;

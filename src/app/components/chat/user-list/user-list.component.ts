@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+// Service imports
 import { ChatService } from '../../../services/chat.service'
 import { DataService } from 'src/app/services/data.service';
 
@@ -21,36 +22,27 @@ export class UserListComponent implements OnInit {
   showSuccessMessage: boolean;
   serverErrorMessage;
 
-  constructor(public chatService: ChatService,
-    private dataService: DataService) { }
+  constructor(
+    public chatService: ChatService,
+    private dataService: DataService
+  ) { }
 
   ngOnInit(): void {
-
     this.displayUserList();
   }
 
   displayUserList() {
     this.chatService.userList().subscribe(
       res => {
-
         this.usernameList = res;
-
-        console.log(this.usernameList);
 
         for (let i = 0; i < this.usernameList.length; i++) {
           this.userListArr.push([this.usernameList[i].firstName + " " + this.usernameList[i].lastName, this.usernameList[i]._id])
 
-
-
-
           if (this.usernameList[i]._id == sessionStorage.getItem('senderId')) {
-            console.log('SENDER FOUND');
             this.senderName = this.usernameList[i].firstName + " " + this.usernameList[i].lastName;
-
           }
-
         }
-        console.log(this.userListArr);
       },
       err => {
         if (err.status === 422) {
@@ -65,14 +57,10 @@ export class UserListComponent implements OnInit {
     )
   }
 
-
   chatWithUser(index) {
 
-    // console.log(this.usernameList[index]); // Check for details
     this.receiverId = this.usernameList[index]._id
-    this.receiverName = this.usernameList[index].firstName + " " + this.usernameList[index].lastName
-    console.log(this.receiverId);
-    console.log(this.receiverName);
+    this.receiverName = this.usernameList[index].firstName + " " + this.usernameList[index].lastName;
 
     sessionStorage.setItem('receiverId', this.receiverId);
     sessionStorage.setItem('receiverName', this.receiverName);
@@ -81,9 +69,7 @@ export class UserListComponent implements OnInit {
       receiverId: this.receiverId,
       receiverName: this.receiverName
     }
-    this.dataService.sendSiblingData(this.siblingPayload)
-
+    // Sending sibling data
+    this.dataService.sendSiblingData(this.siblingPayload);
   }
-
-
 }

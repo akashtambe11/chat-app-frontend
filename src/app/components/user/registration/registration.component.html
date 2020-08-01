@@ -1,5 +1,5 @@
 <div class="wrapper fadeInDown">
-    
+
     <div id="formContent">
 
         <form [formGroup]="registrationForm" (ngSubmit)="registrationForm.valid && onRegisterSubmit()" novalidate>
@@ -9,7 +9,7 @@
             </div>
 
             <div class="example-container">
-                
+
                 <mat-form-field appearance="outline">
                     <mat-label>First Name</mat-label>
                     <input matInput formControlName="firstName" [(ngModel)]="userService.userModel.firstName">
@@ -17,6 +17,7 @@
                     <mat-error *ngIf="registrationForm.get('firstName').invalid"><i>{{getNameWarning('firstName')}}</i>
                     </mat-error>
                     <mat-icon matSuffix>create</mat-icon>
+
                 </mat-form-field>
                 <br>
 
@@ -27,6 +28,7 @@
                     <mat-error *ngIf="registrationForm.get('lastName').invalid"><i>{{getNameWarning('lastName')}}</i>
                     </mat-error>
                     <mat-icon matSuffix>create</mat-icon>
+
                 </mat-form-field>
                 <br>
 
@@ -56,8 +58,8 @@
                 </mat-form-field>
             </div>
 
-            <button mat-raised-button color="primary" type="submit" id="loginSignBtn" [disabled]="!registrationForm.valid"
-                value="Sign-up">Sign
+            <button mat-raised-button color="primary" type="submit" id="loginSignBtn"
+                [disabled]="!registrationForm.valid" value="Sign-up">Sign
                 Up</button>
         </form>
 

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
+// Service imports
 import { ChatService } from 'src/app/services/chat.service';
-
+import { SocketIoService } from 'src/app/services/socket-io.service';
 
 @Component({
   selector: 'app-send-message',
@@ -12,23 +12,21 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class SendMessageComponent implements OnInit {
 
-  hide = true;
   showSuccessMessage: boolean;
   serverErrorMessage;
   senderStoredId;
   receiverStoredId;
   messagePayload;
 
-  clearText;
-
-  constructor(private formBuilder: FormBuilder,
+  constructor(
     public chatService: ChatService,
-    private router: Router) { }
+    private socketService: SocketIoService
+  ) { }
 
   ngOnInit(): void {
   }
+  
   message = new FormControl('', [Validators.required, Validators.minLength(1)]);
-
 
   onSendSubmit() {
     this.senderStoredId = sessionStorage.getItem('senderId');
@@ -39,12 +37,13 @@ export class SendMessageComponent implements OnInit {
       "receiverId": this.receiverStoredId,
       "message": this.chatService.chatModel.message
     }
-    
 
-    // this.chatService.chatModel.message = "";
+    //Socket msg sending
+    this.socketService.sendSocketMessage(this.messagePayload);
+
     this.chatService.sendMessage(this.messagePayload).subscribe(
       res => {
-        console.log("Message Send From FRONT-END");
+        this.chatService.chatModel.message = "";
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
       },
@@ -60,12 +59,12 @@ export class SendMessageComponent implements OnInit {
     )
   }
 
+  // To show/hide send message section
   IsMessageReady() {
-    if(!!sessionStorage.getItem('receiverId')){
+    if (!!sessionStorage.getItem('receiverId')) {
       return true;
     } else {
       return false;
     }
   }
-
 }

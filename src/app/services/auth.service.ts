@@ -7,8 +7,8 @@ export class AuthService {
 
   constructor() { }
 
-   //status check: login
-   isLoggedIn() {
+  //status check: login
+  isLoggedIn() {
     return !!sessionStorage.getItem('token')
   }
 
@@ -23,7 +23,6 @@ export class AuthService {
 
   deleteSessionStorage(key: string) {
     sessionStorage.removeItem(`${key}`);
-
   }
 
   //local Storage activities

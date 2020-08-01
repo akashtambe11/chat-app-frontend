@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
+// service imports
 import { UserService } from '../../../services/user.service'
 
 @Component({
@@ -12,9 +13,9 @@ import { UserService } from '../../../services/user.service'
 export class ForgotPasswordComponent implements OnInit {
 
   forgotMailId;
-  hide = true;
   showSuccessMessage: boolean;
   serverErrorMessage;
+
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
@@ -29,20 +30,19 @@ export class ForgotPasswordComponent implements OnInit {
 
     this.userService.forgotPasword(this.forgotMailId).subscribe(
       res => {
-        console.log("reset Link sent to", this.userService.userModel.email);
-        
-        console.log(res);
-
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
+
       },
       err => {
         if (err.status === 422) {
           this.serverErrorMessage = err.error.message;
           setTimeout(() => this.serverErrorMessage = false, 5000);
+
         } else {
           this.serverErrorMessage = "Something went wrong";
           setTimeout(() => this.serverErrorMessage = false, 5000);
+          
         }
       }
     )
@@ -51,10 +51,8 @@ export class ForgotPasswordComponent implements OnInit {
   //Error warning messages
   getEmailMessage() {
     if (this.email.hasError('required')) {
-
       return 'You must enter a value';
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
-
 }

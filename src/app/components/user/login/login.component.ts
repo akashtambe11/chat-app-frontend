@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+// Service imports
 import { UserService } from '../../../services/user.service'
 
 @Component({
@@ -19,9 +20,11 @@ export class LoginComponent implements OnInit {
   response;
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     public userService: UserService,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
 
@@ -47,13 +50,9 @@ export class LoginComponent implements OnInit {
 
     this.userService.userLogin(this.loginForm.value).subscribe(
       res => {
-        console.log(res);
-        
+   
         this.response = res;
-        console.log(this.response);
-        
         if (this.response.status == true) {
-
           this.router.navigateByUrl('/dashboard');
         }
 
@@ -92,6 +91,4 @@ export class LoginComponent implements OnInit {
     }
     return this.loginForm.get('password').errors?.minlength ? 'Password contain atleast 6 character' : '';
   }
-
-
 }

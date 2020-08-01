@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user.service'
 import { Router } from '@angular/router';
+
+// Service imports
+import { UserService } from '../../../services/user.service'
 
 @Component({
   selector: 'app-verify-account',
@@ -9,10 +11,14 @@ import { Router } from '@angular/router';
   providers: [UserService]
 })
 export class VerifyAccountComponent implements OnInit {
-  
+
   showSuccessMessage: boolean;
   serverErrorMessage;
-  constructor(public userService: UserService, private router: Router) { }
+
+  constructor(
+    public userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -31,13 +37,13 @@ export class VerifyAccountComponent implements OnInit {
         if (err.status === 422) {
           this.serverErrorMessage = err.error.message;
           setTimeout(() => this.serverErrorMessage = false, 5000);
+
         } else {
           this.serverErrorMessage = "Something went wrong";
           setTimeout(() => this.serverErrorMessage = false, 5000);
+
         }
       }
     )
-
   }
-
 }

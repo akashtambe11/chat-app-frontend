@@ -28,17 +28,19 @@ export class ResetPasswordComponent implements OnInit {
 
     this.userService.resetPassword(this.new_reset_password).subscribe(
       res => {
-        console.log("Password has been changed");
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
+
       },
       err => {
         if (err.status === 422) {
           this.serverErrorMessage = err.error.message;
           setTimeout(() => this.serverErrorMessage = false, 5000);
+
         } else {
           this.serverErrorMessage = "Something went wrong";
           setTimeout(() => this.serverErrorMessage = false, 5000);
+          
         }
       }
     )

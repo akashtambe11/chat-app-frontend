@@ -10,33 +10,33 @@
             <div class="dashboardContainer" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center"
                 fxLayoutGap="10px" fxLayoutGap.xs="2px">
 
-                <!-- left -->
+                <!-- left-section-->
                 <div class="leftBox" fxFlex="20">
-                    
-                    <div class="userListBox"> 
-                        
-                            <app-user-list></app-user-list>
-                     
-                        
+
+                    <div class="userListBox">
+                        <!-- user-list component -->
+                        <app-user-list></app-user-list>
+
                     </div>
                 </div>
 
-                <!-- right -->
+                <!-- right-section -->
                 <div class=" rightBox" fxFlex="70">
 
                     <div fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="space-between stretch" fxFlexFill>
                         <div class="MessageDisplayBox" fxFlex="91">
+                            <!-- get-message component -->
                             <app-get-message></app-get-message>
-                            
+
                         </div>
                         <div class="sendMessageBox" fxFlex="40px">
+                            <!-- send-message component -->
                             <app-send-message></app-send-message>
+
                         </div>
                     </div>
                 </div>
             </div>
-        
-
 
         </router-outlet>
     </div>

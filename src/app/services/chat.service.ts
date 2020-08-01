@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 
+// Environment imports
 import { environment } from '../../environments/environment'
+
+// Model imports
 import { Chat } from '../model/chat.model'
 
 @Injectable({
@@ -14,6 +17,7 @@ export class ChatService {
     receiverId: '',
     message: ''
   }
+
   constructor(private http: HttpClient) { }
 
   // Registration

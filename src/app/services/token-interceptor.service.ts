@@ -9,12 +9,13 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private injector: Injector) { }
 
   intercept(req, next) {
- 
+
     let tokenizedRequest = req.clone({
       setHeaders: {
         'token': `${sessionStorage.getItem('token')}`
       }
     })
-    return next.handle(tokenizedRequest); 
+    return next.handle(tokenizedRequest);
+
   }
 }
