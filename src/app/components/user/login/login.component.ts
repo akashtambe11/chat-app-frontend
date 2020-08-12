@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
       res => {
    
         this.response = res;
+        // console.log(this.response);
+        
         if (this.response.status == true) {
           this.router.navigateByUrl('/dashboard');
         }

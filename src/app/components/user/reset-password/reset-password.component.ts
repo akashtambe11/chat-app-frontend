@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
+// Service imports
 import { UserService } from '../../../services/user.service'
 
 @Component({
@@ -15,7 +17,8 @@ export class ResetPasswordComponent implements OnInit {
   showSuccessMessage: boolean;
   serverErrorMessage;
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +32,12 @@ export class ResetPasswordComponent implements OnInit {
     this.userService.resetPassword(this.new_reset_password).subscribe(
       res => {
         this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 4000);
+        
+        setTimeout(() => {
+          this.showSuccessMessage = false;
+          // Navigating to Login Page
+          this.router.navigateByUrl('/login');
+        }, 4000);
 
       },
       err => {

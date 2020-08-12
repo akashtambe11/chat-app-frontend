@@ -12,7 +12,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
     let tokenizedRequest = req.clone({
       setHeaders: {
-        'token': `${sessionStorage.getItem('token')}`
+        token: `${sessionStorage.getItem('token')}`
       }
     })
     return next.handle(tokenizedRequest);
