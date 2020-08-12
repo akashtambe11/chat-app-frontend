@@ -17,8 +17,10 @@ export class ResetPasswordComponent implements OnInit {
   showSuccessMessage: boolean;
   serverErrorMessage;
 
-  constructor(public userService: UserService,
-    private router: Router) { }
+  constructor(
+    public userService: UserService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
@@ -32,9 +34,10 @@ export class ResetPasswordComponent implements OnInit {
     this.userService.resetPassword(this.new_reset_password).subscribe(
       res => {
         this.showSuccessMessage = true;
-        
+
         setTimeout(() => {
           this.showSuccessMessage = false;
+
           // Navigating to Login Page
           this.router.navigateByUrl('/login');
         }, 4000);
